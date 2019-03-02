@@ -1,0 +1,5 @@
+#!/bin/zsh
+set -eu -o pipefail
+
+find \( -name '*.h' -o -name '*.c' -o -name '*.sh' \) -printf '%P\n'
+find config.mk Makefile
