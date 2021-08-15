@@ -93,6 +93,7 @@ struct Client {
 	int bw, oldbw;
 	unsigned int tags;
 	int isfixed, isfloating, isurgent, neverfocus, oldstate, isfullscreen;
+	int mousefocusonly;
 	Client *next;
 	Client *snext;
 	Monitor *mon;
@@ -213,6 +214,7 @@ static void togglebar(const Arg *arg);
 static void togglefloating(const Arg *arg);
 static void toggletag(const Arg *arg);
 static void toggleview(const Arg *arg);
+static void togglemousefocusonly(const Arg *arg);
 static void unfocus(Client *c, int setfocus);
 static void unmanage(Client *c, int destroyed);
 static void unmapnotify(XEvent *e);
@@ -790,7 +792,7 @@ void
 focus(Client *c)
 {
 	if (!c || !ISVISIBLE(c))
-		for (c = selmon->stack; c && !ISVISIBLE(c); c = c->snext);
+		for (c = selmon->stack; c && (!ISVISIBLE(c) || c->mousefocusonly); c = c->snext);
 	if (selmon->sel && selmon->sel != c)
 		unfocus(selmon->sel, 0);
 	if (c) {
@@ -843,16 +845,16 @@ focusstack(const Arg *arg)
 	if (!selmon->sel || (selmon->sel->isfullscreen && lockfullscreen))
 		return;
 	if (arg->i > 0) {
-		for (c = selmon->sel->next; c && !ISVISIBLE(c); c = c->next);
+		for (c = selmon->sel->next; c && (!ISVISIBLE(c) || c->mousefocusonly); c = c->next);
 		if (!c)
-			for (c = selmon->clients; c && !ISVISIBLE(c); c = c->next);
+			for (c = selmon->clients; c && (!ISVISIBLE(c) || c->mousefocusonly); c = c->next);
 	} else {
 		for (i = selmon->clients; i != selmon->sel; i = i->next)
-			if (ISVISIBLE(i))
+			if (ISVISIBLE(i) && !i->mousefocusonly)
 				c = i;
 		if (!c)
 			for (; i; i = i->next)
-				if (ISVISIBLE(i))
+				if (ISVISIBLE(i) && !i->mousefocusonly)
 					c = i;
 	}
 	if (c) {
@@ -1772,6 +1774,14 @@ toggleview(const Arg *arg)
 		focus(NULL);
 		arrange(selmon);
 	}
+}
+
+void
+togglemousefocusonly(const Arg *arg)
+{
+	if (!selmon->sel)
+		return;
+	selmon->sel->mousefocusonly = !selmon->sel->mousefocusonly;
 }
 
 void
