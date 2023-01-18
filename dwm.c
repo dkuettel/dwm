@@ -95,6 +95,7 @@ struct Client {
 	int isfixed, isfloating, isurgent, neverfocus, oldstate, isfullscreen;
 	int floatborderpx;
 	int hasfloatborderwidth;
+	int CenterThisWindow;
 	int mousefocusonly;
 	Client *next;
 	Client *snext;
@@ -144,6 +145,7 @@ typedef struct {
 	int monitor;
 	int floatx, floaty, floatw, floath;
 	int floatborderpx;
+	int CenterThisWindow;
 } Rule;
 
 /* function declarations */
@@ -292,6 +294,7 @@ applyrules(Client *c)
 
 	/* rule matching */
 	c->isfloating = 0;
+	c->CenterThisWindow = 0;
 	c->tags = 0;
 	XGetClassHint(dpy, c->win, &ch);
 	class    = ch.res_class ? ch.res_class : broken;
@@ -304,6 +307,7 @@ applyrules(Client *c)
 		&& (!r->instance || strstr(instance, r->instance)))
 		{
 			c->isfloating = r->isfloating;
+			c->CenterThisWindow = r->CenterThisWindow;
 			c->tags |= r->tags;
 			if (r->floatborderpx >= 0) {
 			    c->floatborderpx = r->floatborderpx;
@@ -1741,6 +1745,13 @@ tile(Monitor *m)
 			if (ty + HEIGHT(c) < m->wh)
 				ty += HEIGHT(c);
 		}
+
+	if (n == 1 && selmon->sel->CenterThisWindow)
+		resizeclient(
+			selmon->sel,
+			m->wx + m->ww * (1.0-0.5) / 2, m->wy,
+			m->ww * 0.5, m->wh
+		);
 }
 
 void
