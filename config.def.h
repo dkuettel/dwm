@@ -54,12 +54,13 @@ static const Rule rules[] = {
 		5, 5, 3830, 2140, 5, // float-x,y,w,h; floatborderpx
 		0, // CenterThisWindow?
 	},
-	{
-		"Google-chrome", NULL, NULL, // class, instance, title
-		0, 0, -1, // tags mask, isfloating, monitor
-		-1, -1, -1, -1, -1, // float-x,y,w,h; floatborderpx
-		1, // CenterThisWindow?
-	}
+	// doesnt quite work as nicely as I hoped
+	// {
+	// 	"Google-chrome", NULL, NULL, // class, instance, title
+	// 	0, 0, -1, // tags mask, isfloating, monitor
+	// 	-1, -1, -1, -1, -1, // float-x,y,w,h; floatborderpx
+	// 	1, // CenterThisWindow?
+	// }
 };
 
 /* layout(s) */
