@@ -159,6 +159,10 @@ static const Key keys[] = {
 	{ 0, XK_F19, spawn, {.v = lockcmd} },
 	{ MODKEY, XK_F19, spawn, {.v = sleepcmd} },
 	{ MODKEY|ShiftMask, XK_F19, spawn, {.v = hibernatecmd} },
+	// for kmonad configs (f19 doesnt work there)
+	{ MODKEY, XK_End, spawn, {.v = lockcmd} },
+	{ MODKEY|ShiftMask, XK_Home, spawn, {.v = sleepcmd} },
+	{ MODKEY|ShiftMask|ControlMask, XK_Page_Down, spawn, {.v = hibernatecmd} },
 	{ 0, XK_F13, spawn, {.v = spotifyPreviousCmd} },
 	{ 0, XK_F14, spawn, {.v = spotifyPlayPauseCmd} },
 	{ 0, XK_F15, spawn, {.v = spotifyNextCmd} },
