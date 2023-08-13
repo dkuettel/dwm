@@ -20,7 +20,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const char *tags[] = { "1a", "2s", "3d", "4f", "5g", "6z", "7x", "8c", "9v" };
 
 static const Rule rules[] = {
 	/* xprop(1):
