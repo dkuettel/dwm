@@ -30,24 +30,24 @@ static const Rule rules[] = {
 	/* class      instance    title       tags mask     isfloating   monitor float-x,y,w,h floatborderpx CenterThisWindow?*/
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1,     -1,-1,-1,-1,  -1,           0},
 	//{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	// {
+	// 	NULL, NULL, "panda-trains", // class, instance, title
+	// 	0, 1, -1, // tags mask, isfloating, monitor
+	// 	-1, -1, -1, -1, -1, // float-x,y,w,h; floatborderpx
+	// 	0, // CenterThisWindow?
+	// },
 	{
-		NULL, NULL, "panda-trains", // class, instance, title
+		"vlc", NULL, NULL, // class, instance, title
 		0, 1, -1, // tags mask, isfloating, monitor
 		-1, -1, -1, -1, -1, // float-x,y,w,h; floatborderpx
 		0, // CenterThisWindow?
 	},
-	{
-		"vlc", NULL, NULL, // class, instance, title
-		~0, 1, -1, // tags mask, isfloating, monitor
-		-1, -1, -1, -1, -1, // float-x,y,w,h; floatborderpx
-		0, // CenterThisWindow?
-	},
-	{
-		"pstart", NULL, NULL, // class, instance, title
-		~0, 1, -1, // tags mask, isfloating, monitor
-		-1, -1, -1, -1, -1, // float-x,y,w,h; floatborderpx
-		0, // CenterThisWindow?
-	},
+	// {
+	// 	"pstart", NULL, NULL, // class, instance, title
+	// 	~0, 1, -1, // tags mask, isfloating, monitor
+	// 	-1, -1, -1, -1, -1, // float-x,y,w,h; floatborderpx
+	// 	0, // CenterThisWindow?
+	// },
 	{
 		"neovide-flip-flop", NULL, NULL, // class, instance, title
 		0, 1, -1, // tags mask, isfloating, monitor
