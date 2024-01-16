@@ -20,7 +20,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "n", "e", "i", "o" };
+static const char *tags[] = { "1", "2", "3", "4" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -72,7 +72,7 @@ static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen win
 static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{ "[]=",      tile },    /* first entry is default */
-	{ "><>",      NULL },    /* no layout function means floating behavior */
+	// { "><>",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
 };
 
@@ -121,43 +121,49 @@ self_restart(const Arg *arg)
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ MODKEY,                       XK_p,      spawn,          {.v = pstartsubcmd } },
-	{ MODKEY|ShiftMask,             XK_p,      spawn,          {.v = pstartallcmd } },
-	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY,                       XK_b,      togglebar,      {0} },
-	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
-	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
-	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
-	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
-	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
-	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
+	{ MODKEY,                       XK_space,      spawn,          {.v = pstartsubcmd } },
+	{ MODKEY|ShiftMask,             XK_space,      spawn,          {.v = pstartallcmd } },
+	{ MODKEY,             XK_u, spawn,          {.v = termcmd } },
+	// { MODKEY,                       XK_b,      togglebar,      {0} },
+	{ MODKEY|ShiftMask,                       XK_e,      focusstack,     {.i = +1 } },
+	{ MODKEY|ShiftMask,                       XK_u,      focusstack,     {.i = -1 } },
+	// { MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
+	// { MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
+	// { MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
+	// { MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
+	{ MODKEY,                       XK_e, zoom,           {0} },
 	{ MODKEY,                       XK_Return, zoom,           {0} },
+	{ MODKEY,                       XK_n,    view,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
-	//{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
-	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
-	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
-	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
-	{ MODKEY,                       XK_space,  setlayout,      {0} },
-	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
-	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
-	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
-	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
-	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
-	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_k,      killclient,     {0} },
+	// { MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
+	// { MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
+	// { MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
+	{ MODKEY,                       XK_v,  setlayout,      {0} },
+	{ MODKEY|ShiftMask,             XK_f,  togglefloating, {0} },
+	// { MODKEY,                       XK_0,      view,           {.ui = ~0 } },
+	// { MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
+	// { MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
+	// { MODKEY,                       XK_period, focusmon,       {.i = +1 } },
+	// { MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
+	// { MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
 	TAGKEYS(                        XK_4,                      3)
+	TAGKEYS(                        XK_h,                      0)
+	TAGKEYS(                        XK_comma,                      1)
+	TAGKEYS(                        XK_period,                      2)
+	TAGKEYS(                        XK_slash,                      3)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 	{ MODKEY|ShiftMask, XK_l, spawn, {.v = lockcmd} },
 	{ 0, XK_F19, spawn, {.v = lockcmd} },
 	{ MODKEY, XK_F19, spawn, {.v = sleepcmd} },
 	{ MODKEY|ShiftMask, XK_F19, spawn, {.v = hibernatecmd} },
 	// for kmonad configs (f19 doesnt work there)
-	{ MODKEY, XK_End, spawn, {.v = lockcmd} },
-	{ MODKEY, XK_Home, spawn, {.v = sleepcmd} },
-	{ MODKEY, XK_Page_Down, spawn, {.v = hibernatecmd} },
+	// { MODKEY, XK_End, spawn, {.v = lockcmd} },
+	// { MODKEY, XK_Home, spawn, {.v = sleepcmd} },
+	// { MODKEY, XK_Page_Down, spawn, {.v = hibernatecmd} },
 	{ 0, XK_F13, spawn, {.v = spotifyPreviousCmd} },
 	{ 0, XK_F14, spawn, {.v = spotifyPlayPauseCmd} },
 	{ 0, XK_F15, spawn, {.v = spotifyNextCmd} },
@@ -166,12 +172,12 @@ static const Key keys[] = {
 	//{ MODKEY, XK_F16, spawn, {.v = useSpeakersCmd} },
 	//{ MODKEY, XK_F17, spawn, {.v = useHeadphonesCmd} },
 	//{ MODKEY, XK_F18, spawn, {.v = useBoseCmd} },
-	{ MODKEY, XK_o, spawn, {.v = chromeCmd} },
-	{ MODKEY|ShiftMask, XK_o, spawn, {.v = firefoxCmd} },
-	{ MODKEY, XK_e, killclient, {0} },
+	{ MODKEY, XK_y, spawn, {.v = chromeCmd} },
+	{ MODKEY|ShiftMask, XK_y, spawn, {.v = firefoxCmd} },
+	// { MODKEY, XK_e, killclient, {0} },
 	{ MODKEY, XK_F1, spawn, {.v = toggleRedshiftCmd} },
 	{ MODKEY|ShiftMask, XK_r, self_restart, {0} },
-	{ MODKEY, XK_n, togglemousefocusonly, {0} },
+	// { MODKEY, XK_n, togglemousefocusonly, {0} },
 };
 
 /* button definitions */
