@@ -110,6 +110,7 @@ static const char *pavuUnmuteCmd[] = { "/usr/bin/pactl", "set-sink-mute", "@DEFA
 //static const char *useHeadphonesCmd[] = { "use-headphones", NULL };
 //static const char *useBoseCmd[] = { "use-bose", NULL };
 static const char *chromeCmd[] = { "chrome", NULL };
+static const char *ichromeCmd[] = { "ichrome", NULL };
 static const char *firefoxCmd[] = { "firefox", NULL };
 static const char *toggleRedshiftCmd[] = { "toggle-redshift", NULL };
 
@@ -125,8 +126,8 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_space,      spawn,          {.v = pstartallcmd } },
 	{ MODKEY,             XK_u, spawn,          {.v = termcmd } },
 	// { MODKEY,                       XK_b,      togglebar,      {0} },
-	{ MODKEY|ShiftMask,                       XK_e,      focusstack,     {.i = +1 } },
-	{ MODKEY|ShiftMask,                       XK_u,      focusstack,     {.i = -1 } },
+	{ MODKEY,                       XK_k,      focusstack,     {.i = +1 } },
+	// { MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
 	// { MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
 	// { MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
 	// { MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
@@ -140,7 +141,7 @@ static const Key keys[] = {
 	// { MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	// { MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
 	{ MODKEY,                       XK_v,  setlayout,      {0} },
-	{ MODKEY|ShiftMask,             XK_f,  togglefloating, {0} },
+	{ MODKEY|ShiftMask,             XK_d,  togglefloating, {0} },
 	// { MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	// { MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
 	// { MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
@@ -156,7 +157,7 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_period,                      2)
 	TAGKEYS(                        XK_slash,                      3)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
-	{ MODKEY|ShiftMask, XK_l, spawn, {.v = lockcmd} },
+	// { MODKEY|ShiftMask, XK_l, spawn, {.v = lockcmd} },
 	{ 0, XK_F19, spawn, {.v = lockcmd} },
 	{ MODKEY, XK_F19, spawn, {.v = sleepcmd} },
 	{ MODKEY|ShiftMask, XK_F19, spawn, {.v = hibernatecmd} },
@@ -164,19 +165,20 @@ static const Key keys[] = {
 	// { MODKEY, XK_End, spawn, {.v = lockcmd} },
 	// { MODKEY, XK_Home, spawn, {.v = sleepcmd} },
 	// { MODKEY, XK_Page_Down, spawn, {.v = hibernatecmd} },
-	{ 0, XK_F13, spawn, {.v = spotifyPreviousCmd} },
-	{ 0, XK_F14, spawn, {.v = spotifyPlayPauseCmd} },
-	{ 0, XK_F15, spawn, {.v = spotifyNextCmd} },
-	{ MODKEY, XK_F14, spawn, {.v = pavuMuteCmd} },
-	{ MODKEY|ShiftMask, XK_F14, spawn, {.v = pavuUnmuteCmd} },
+	{ MODKEY, XK_f, spawn, {.v = spotifyPreviousCmd} },
+	{ MODKEY, XK_s, spawn, {.v = spotifyPlayPauseCmd} },
+	{ MODKEY, XK_t, spawn, {.v = spotifyNextCmd} },
+	{ MODKEY, XK_r, spawn, {.v = pavuMuteCmd} },
+	{ MODKEY|ShiftMask, XK_r, spawn, {.v = pavuUnmuteCmd} },
 	//{ MODKEY, XK_F16, spawn, {.v = useSpeakersCmd} },
 	//{ MODKEY, XK_F17, spawn, {.v = useHeadphonesCmd} },
 	//{ MODKEY, XK_F18, spawn, {.v = useBoseCmd} },
 	{ MODKEY, XK_y, spawn, {.v = chromeCmd} },
+	{ MODKEY|ShiftMask|ControlMask, XK_y, spawn, {.v = ichromeCmd} },
 	{ MODKEY|ShiftMask, XK_y, spawn, {.v = firefoxCmd} },
 	// { MODKEY, XK_e, killclient, {0} },
 	{ MODKEY, XK_F1, spawn, {.v = toggleRedshiftCmd} },
-	{ MODKEY|ShiftMask, XK_r, self_restart, {0} },
+	{ MODKEY|ShiftMask|ControlMask, XK_q, self_restart, {0} },
 	// { MODKEY, XK_n, togglemousefocusonly, {0} },
 };
 
