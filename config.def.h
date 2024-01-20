@@ -126,17 +126,17 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_space,      spawn,          {.v = pstartallcmd } },
 	{ MODKEY,             XK_u, spawn,          {.v = termcmd } },
 	// { MODKEY,                       XK_b,      togglebar,      {0} },
-	{ MODKEY,                       XK_k,      focusstack,     {.i = +1 } },
+	{ MODKEY,                       XK_h,      focusstack,     {.i = +1 } },
 	// { MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
 	// { MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
 	// { MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
 	// { MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	// { MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
-	{ MODKEY,                       XK_e, zoom,           {0} },
+	{ MODKEY,                       XK_comma, zoom,           {0} },
 	{ MODKEY,                       XK_Return, zoom,           {0} },
-	{ MODKEY,                       XK_n,    view,           {0} },
+	{ MODKEY,                       XK_k,    view,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
-	{ MODKEY|ShiftMask,             XK_k,      killclient,     {0} },
+	{ MODKEY|ShiftMask,             XK_comma,      killclient,     {0} },
 	// { MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	// { MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	// { MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
@@ -152,10 +152,10 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
 	TAGKEYS(                        XK_4,                      3)
-	TAGKEYS(                        XK_h,                      0)
-	TAGKEYS(                        XK_comma,                      1)
-	TAGKEYS(                        XK_period,                      2)
-	TAGKEYS(                        XK_slash,                      3)
+	TAGKEYS(                        XK_n,                      0)
+	TAGKEYS(                        XK_e,                      1)
+	TAGKEYS(                        XK_i,                      2)
+	TAGKEYS(                        XK_o,                      3)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 	// { MODKEY|ShiftMask, XK_l, spawn, {.v = lockcmd} },
 	{ 0, XK_F19, spawn, {.v = lockcmd} },
@@ -165,11 +165,11 @@ static const Key keys[] = {
 	// { MODKEY, XK_End, spawn, {.v = lockcmd} },
 	// { MODKEY, XK_Home, spawn, {.v = sleepcmd} },
 	// { MODKEY, XK_Page_Down, spawn, {.v = hibernatecmd} },
-	{ MODKEY, XK_f, spawn, {.v = spotifyPreviousCmd} },
+	{ MODKEY, XK_r, spawn, {.v = spotifyPreviousCmd} },
 	{ MODKEY, XK_s, spawn, {.v = spotifyPlayPauseCmd} },
 	{ MODKEY, XK_t, spawn, {.v = spotifyNextCmd} },
-	{ MODKEY, XK_r, spawn, {.v = pavuMuteCmd} },
-	{ MODKEY|ShiftMask, XK_r, spawn, {.v = pavuUnmuteCmd} },
+	{ MODKEY, XK_f, spawn, {.v = pavuMuteCmd} },
+	{ MODKEY, XK_p, spawn, {.v = pavuUnmuteCmd} },
 	//{ MODKEY, XK_F16, spawn, {.v = useSpeakersCmd} },
 	//{ MODKEY, XK_F17, spawn, {.v = useHeadphonesCmd} },
 	//{ MODKEY, XK_F18, spawn, {.v = useBoseCmd} },
@@ -178,7 +178,7 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask, XK_y, spawn, {.v = firefoxCmd} },
 	// { MODKEY, XK_e, killclient, {0} },
 	{ MODKEY, XK_F1, spawn, {.v = toggleRedshiftCmd} },
-	{ MODKEY|ShiftMask|ControlMask, XK_q, self_restart, {0} },
+	{ MODKEY|ControlMask, XK_q, self_restart, {0} },
 	// { MODKEY, XK_n, togglemousefocusonly, {0} },
 };
 
