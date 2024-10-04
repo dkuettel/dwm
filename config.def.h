@@ -111,7 +111,7 @@ static const char *pavuUnmuteCmd[] = { "/usr/bin/pactl", "set-sink-mute", "@DEFA
 //static const char *useBoseCmd[] = { "use-bose", NULL };
 static const char *chromeCmd[] = { "chrome", NULL };
 static const char *ichromeCmd[] = { "ichrome", NULL };
-static const char *firefoxCmd[] = { "firefox", NULL };
+static const char *firefoxCmd[] = { "zen", NULL };
 static const char *toggleRedshiftCmd[] = { "toggle-redshift", NULL };
 
 void
