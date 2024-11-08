@@ -92,13 +92,14 @@ struct Client {
 	int basew, baseh, incw, inch, maxw, maxh, minw, minh, hintsvalid;
 	int bw, oldbw;
 	unsigned int tags;
-	int isfixed, isfloating, isurgent, neverfocus, oldstate, isfullscreen;
+	int isfixed, isfloating, isurgent, neverfocus, oldstate, isfullscreen, isforegrounded;
 	int floatborderpx;
 	int hasfloatborderwidth;
 	int CenterThisWindow;
 	int mousefocusonly;
 	Client *next;
 	Client *snext;
+	Client *tnext;
 	Monitor *mon;
 	Window win;
 };
@@ -131,6 +132,7 @@ struct Monitor {
 	Client *clients;
 	Client *sel;
 	Client *stack;
+	Client *foregrounded;
 	Monitor *next;
 	Window barwin;
 	const Layout *lt[2];
@@ -217,6 +219,7 @@ static void tag(const Arg *arg);
 static void tagmon(const Arg *arg);
 static void tile(Monitor *m);
 static void togglebar(const Arg *arg);
+static void toggleforegrounded(const Arg *arg);
 static void togglefloating(const Arg *arg);
 static void toggletag(const Arg *arg);
 static void toggleview(const Arg *arg);
@@ -433,6 +436,21 @@ attachstack(Client *c)
 {
 	c->snext = c->mon->stack;
 	c->mon->stack = c;
+}
+
+void
+attachforegrounded (Client *c)
+{
+	c->tnext = c->mon->foregrounded;
+	c->mon->foregrounded = c;
+}
+
+void
+detachforegrounded (Client *c)
+{
+	Client **tc;
+	for (tc = &c->mon->foregrounded; *tc && *tc != c; tc = &(*tc)->tnext);
+	*tc = c->tnext;
 }
 
 void
@@ -1229,6 +1247,39 @@ nexttiled(Client *c)
 	return c;
 }
 
+Client *
+nextforegrounded(Client *c)
+{
+	for (; c && (!c->isforegrounded || !ISVISIBLE(c)); c = c->tnext);
+	return c;
+}
+
+void
+arrangeforegrounded (Monitor *m)
+{
+	unsigned int n,i,x,y,w,h;
+	Client *c;
+
+	for (n = 0, c = nextforegrounded(m->foregrounded); c; c = nextforegrounded(c->tnext), n++);
+	if (n == 0)
+		return;
+
+	for (i = 0, c = nextforegrounded(m->foregrounded); c; c = nextforegrounded(c->tnext), i++){
+		if (n == 1) {
+			x = m->mx + (m->mw - m->mw * fgw) / 2;
+			y = m->my + (m->mh - m->mh * fgh) / 2;
+			w = (m->mw * fgw) - (2 * (m->foregrounded->bw));
+			h = (m->mh * fgh) - (2 * (m->foregrounded->bw));
+		} else {
+			x = (n - 1 - i) * (m->mw / n);
+			y = m->my + (m->mh - m->mh * fgh) / 2;
+			w = (m->mw * (1 / (float)n)) - (2 * (m->foregrounded->bw));
+			h = (m->mh * fgh) - (2 * (m->foregrounded->bw));
+		}
+		resize(c,x,y,w,h,0);
+	}
+}
+
 void
 pop(Client *c)
 {
@@ -1765,6 +1816,24 @@ togglebar(const Arg *arg)
 }
 
 void
+toggleforegrounded(const Arg *arg)
+{
+	if (!selmon->sel)
+		return;
+	if (selmon->sel->isfullscreen) /* no support for fullscreen windows */
+		return;
+
+	selmon->sel->isforegrounded || selmon->sel->isfloating ?
+		detachforegrounded(selmon->sel) : attachforegrounded(selmon->sel);
+
+	selmon->sel->isforegrounded = selmon->sel->isfloating =
+		!selmon->sel->isfloating && !selmon->sel->isforegrounded;
+	
+	arrangeforegrounded(selmon);
+	arrange(selmon);
+}
+
+void
 togglefloating(const Arg *arg)
 {
 	if (!selmon->sel)
@@ -1775,6 +1844,11 @@ togglefloating(const Arg *arg)
 	if (selmon->sel->isfloating)
 		resize(selmon->sel, selmon->sel->x, selmon->sel->y,
 			selmon->sel->w, selmon->sel->h, 0);
+	if (selmon->sel->isforegrounded) {
+		selmon->sel->isforegrounded = 0;
+		detachforegrounded(selmon->sel);
+		arrangeforegrounded(selmon);
+	}
 	arrange(selmon);
 }
 
@@ -1834,6 +1908,12 @@ unmanage(Client *c, int destroyed)
 
 	detach(c);
 	detachstack(c);
+
+	if (c->isforegrounded){
+		detachforegrounded(c);
+		arrangeforegrounded(m);
+	}
+
 	if (!destroyed) {
 		wc.border_width = c->oldbw;
 		XGrabServer(dpy); /* avoid race conditions */
