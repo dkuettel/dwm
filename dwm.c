@@ -1410,6 +1410,7 @@ restack(Monitor *m)
 				wc.sibling = c->win;
 			}
 	}
+	XRaiseWindow(dpy, m->sel->win);  // in the end, the active window shall always be on top
 	XSync(dpy, False);
 	while (XCheckMaskEvent(dpy, EnterWindowMask, &ev));
 }
