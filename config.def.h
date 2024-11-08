@@ -51,8 +51,8 @@ static const Rule rules[] = {
 	{
 		"neovide-flip-flop", NULL, NULL, // class, instance, title
 		0, 1, -1, // tags mask, isfloating, monitor
-		5, 5, 3830, 2140, 5, // float-x,y,w,h; floatborderpx
-		0, // CenterThisWindow?
+		50, 80, 3740, 2040, -1, // float-x,y,w,h; floatborderpx
+		1, // CenterThisWindow?
 	},
 	// doesnt quite work as nicely as I hoped
 	// {
