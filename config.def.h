@@ -111,9 +111,9 @@ static const char *pavuUnmuteCmd[] = { "/usr/bin/pactl", "set-sink-mute", "@DEFA
 //static const char *useSpeakersCmd[] = { "use-speakers", NULL };
 //static const char *useHeadphonesCmd[] = { "use-headphones", NULL };
 //static const char *useBoseCmd[] = { "use-bose", NULL };
-static const char *chromeCmd[] = { "chrome", NULL };
-static const char *ichromeCmd[] = { "ichrome", NULL };
-static const char *firefoxCmd[] = { "zen", NULL };
+// static const char *chromeCmd[] = { "chrome", NULL };
+// static const char *ichromeCmd[] = { "ichrome", NULL };
+static const char *zenCmd[] = { "zen", NULL };
 static const char *toggleRedshiftCmd[] = { "toggle-redshift", NULL };
 
 void
@@ -177,9 +177,9 @@ static const Key keys[] = {
 	//{ MODKEY, XK_F16, spawn, {.v = useSpeakersCmd} },
 	//{ MODKEY, XK_F17, spawn, {.v = useHeadphonesCmd} },
 	//{ MODKEY, XK_F18, spawn, {.v = useBoseCmd} },
-	{ MODKEY, XK_y, spawn, {.v = chromeCmd} },
-	{ MODKEY|ShiftMask|ControlMask, XK_y, spawn, {.v = ichromeCmd} },
-	{ MODKEY|ShiftMask, XK_y, spawn, {.v = firefoxCmd} },
+	{ MODKEY, XK_y, spawn, {.v = zenCmd} },
+	// { MODKEY|ShiftMask|ControlMask, XK_y, spawn, {.v = ichromeCmd} },
+	// { MODKEY|ShiftMask, XK_y, spawn, {.v = firefoxCmd} },
 	// { MODKEY, XK_e, killclient, {0} },
 	{ MODKEY, XK_F1, spawn, {.v = toggleRedshiftCmd} },
 	{ MODKEY|ControlMask, XK_q, self_restart, {0} },
