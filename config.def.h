@@ -54,6 +54,12 @@ static const Rule rules[] = {
 		50, 80, 3740, 2040, -1, // float-x,y,w,h; floatborderpx
 		0, // CenterThisWindow?
 	},
+	{
+		"tmux-test-config", NULL, NULL, // class, instance, title
+		0, 1, -1, // tags mask, isfloating, monitor
+		50, 80, 3740, 2040, -1, // float-x,y,w,h; floatborderpx
+		0, // CenterThisWindow?
+	},
 	// doesnt quite work as nicely as I hoped
 	// {
 	// 	"Google-chrome", NULL, NULL, // class, instance, title
