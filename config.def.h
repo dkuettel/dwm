@@ -119,7 +119,7 @@ static const char *pavuUnmuteCmd[] = { "pactl", "set-sink-mute", "@DEFAULT_SINK@
 //static const char *useBoseCmd[] = { "use-bose", NULL };
 // static const char *chromeCmd[] = { "chrome", NULL };
 // static const char *ichromeCmd[] = { "ichrome", NULL };
-static const char *zenCmd[] = { "zen", NULL };
+static const char *firefoxCmd[] = { "firefox", NULL };
 static const char *toggleRedshiftCmd[] = { "toggle-redshift", NULL };
 
 void
@@ -183,7 +183,7 @@ static const Key keys[] = {
 	//{ MODKEY, XK_F16, spawn, {.v = useSpeakersCmd} },
 	//{ MODKEY, XK_F17, spawn, {.v = useHeadphonesCmd} },
 	//{ MODKEY, XK_F18, spawn, {.v = useBoseCmd} },
-	{ MODKEY, XK_y, spawn, {.v = zenCmd} },
+	{ MODKEY, XK_y, spawn, {.v = firefoxCmd} },
 	// { MODKEY|ShiftMask|ControlMask, XK_y, spawn, {.v = ichromeCmd} },
 	// { MODKEY|ShiftMask, XK_y, spawn, {.v = firefoxCmd} },
 	// { MODKEY, XK_e, killclient, {0} },
