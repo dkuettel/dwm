@@ -29,7 +29,7 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor float-x,y,w,h floatborderpx CenterThisWindow?*/
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1,     -1,-1,-1,-1,  -1,           0},
-	//{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	{ "firefox",  NULL,       NULL,       1 << 1,       0,           -1,     -1,-1,-1,-1,  -1,           0},
 	// {
 	// 	NULL, NULL, "panda-trains", // class, instance, title
 	// 	0, 1, -1, // tags mask, isfloating, monitor
