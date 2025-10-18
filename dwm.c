@@ -763,8 +763,9 @@ drawbar(Monitor *m)
 
 	for (c = m->clients; c; c = c->next) {
 		occ |= c->tags;
-		if (c->isurgent)
-			urg |= c->tags;
+		// NOTE i never want to see the urgent flag
+		// if (c->isurgent)
+		// 	urg |= c->tags;
 	}
 	x = 0;
 	for (i = 0; i < LENGTH(tags); i++) {
