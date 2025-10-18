@@ -75,6 +75,17 @@ static const Rule rules[] = {
 	// }
 };
 
+
+static const char *autostart_alacritty[] = { "alacritty", NULL };
+static const char *autostart_firefox[] = {"firefox", NULL};
+
+Autostarttag autostarttaglist[] = {
+	{.cmd = autostart_alacritty, .tags = 1 << 0 },
+	{.cmd = autostart_firefox, .tags = 1 << 1 },
+	{.cmd = NULL, .tags = 0 },
+};
+
+
 /* layout(s) */
 static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
