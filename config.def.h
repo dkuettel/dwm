@@ -76,11 +76,11 @@ static const Rule rules[] = {
 };
 
 
-static const char *autostart_alacritty[] = { "alacritty", NULL };
+static const char *autostart_term[] = { "term", NULL };
 static const char *autostart_firefox[] = {"firefox", NULL};
 
 Autostarttag autostarttaglist[] = {
-	{.cmd = autostart_alacritty, .tags = 1 << 0 },
+	{.cmd = autostart_term, .tags = 1 << 0 },
 	{.cmd = autostart_firefox, .tags = 1 << 1 },
 	{.cmd = NULL, .tags = 0 },
 };
@@ -118,7 +118,7 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, "-i", "-l", "50", "-p", ">", NULL };
 static const char *pstartsubcmd[] = { "dmenu-apps", NULL };
 static const char *pstartallcmd[] = { "dmenu-all", NULL };
-static const char *termcmd[]  = { "alacritty", NULL };
+static const char *termcmd[]  = { "term", NULL };
 static const char *lockcmd[] = { "standby-lock", NULL };
 // static const char *sleepcmd[] = { "st", "-c", "pstart", "-t", "pstart", "-g", "110x35+1000+100", "-e", "go-sleep", NULL };
 static const char *sleepcmd[] = { "go-sleep", NULL };
