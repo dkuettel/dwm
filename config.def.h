@@ -80,8 +80,8 @@ static const char *autostart_term[] = { "term", NULL };
 static const char *autostart_firefox[] = {"firefox", NULL};
 
 Autostarttag autostarttaglist[] = {
-	{.cmd = autostart_term, .tags = 1 << 0 },
-	{.cmd = autostart_firefox, .tags = 1 << 1 },
+	{.cmd = autostart_term, .tags = 1 << 2 },
+	{.cmd = autostart_firefox, .tags = 1 << 3 },
 	{.cmd = NULL, .tags = 0 },
 };
 
