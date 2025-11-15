@@ -20,7 +20,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "󰰈", "󰰌", "n", "e", "i", "o" };
+static const char *tags[] = { "^", "^", "n", "e", "i", "o" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -184,7 +184,7 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 	// { MODKEY|ShiftMask, XK_l, spawn, {.v = lockcmd} },
 	{ 0, XK_F19, spawn, {.v = lockcmd} },
-	{ MODKEY, XK_l, spawn, {.v = lockcmd} },
+	// { MODKEY, XK_l, spawn, {.v = lockcmd} },
 	{ MODKEY, XK_F19, spawn, {.v = sleepcmd} },
 	{ MODKEY|ShiftMask, XK_F19, spawn, {.v = hibernatecmd} },
 	// for kmonad configs (f19 doesnt work there)
