@@ -71,13 +71,13 @@ static const Rule rules[] = {
 		"steam", "steamwebhelper", "Steam", // class, instance, title
 		0, 1, -1, // tags mask, isfloating, monitor
 		662, 45, 2288, 2107, -1, // float-x,y,w,h; floatborderpx
-		0, // CenterThisWindow?
+		-1, // CenterThisWindow?
 	},
 	{
 		"steam", "steamwebhelper", NULL, // class, instance, title
 		0, 1, -1, // tags mask, isfloating, monitor
 		252, 208, 1700, 1444, -1, // float-x,y,w,h; floatborderpx
-		0, // CenterThisWindow?
+		-1, // CenterThisWindow?
 	},
 	// doesnt quite work as nicely as I hoped
 	// {
