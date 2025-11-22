@@ -23,9 +23,10 @@ static const char *colors[][3]      = {
 static const char *tags[] = { "n", "e", "i", "o", "." };
 
 static const Rule rules[] = {
-	/* xprop(1):
+	/* xprop:
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
+	 * and xdotool selectwindow getwindowgeometry to get sizes
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor float-x,y,w,h floatborderpx CenterThisWindow?*/
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1,     -1,-1,-1,-1,  -1,           0},
@@ -64,6 +65,18 @@ static const Rule rules[] = {
 		"tmux-test-config", NULL, NULL, // class, instance, title
 		0, 1, -1, // tags mask, isfloating, monitor
 		50, 80, 3740, 2040, -1, // float-x,y,w,h; floatborderpx
+		0, // CenterThisWindow?
+	},
+	{
+		"steamwebhelper", "steam", "Steam", // class, instance, title
+		0, 1, -1, // tags mask, isfloating, monitor
+		662, 45, 2288, 2107, -1, // float-x,y,w,h; floatborderpx
+		0, // CenterThisWindow?
+	},
+	{
+		"steamwebhelper", "steam", NULL, // class, instance, title
+		0, 1, -1, // tags mask, isfloating, monitor
+		252, 208, 1700, 1444, -1, // float-x,y,w,h; floatborderpx
 		0, // CenterThisWindow?
 	},
 	// doesnt quite work as nicely as I hoped
