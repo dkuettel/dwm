@@ -20,27 +20,33 @@
         system:
         let
           pkgs = import nixpkgs { system = system; };
-          pkg = pkgs.stdenv.mkDerivation {
-            pname = "dwm";
-            version = "dk";
+          pkg =
+            host:
+            pkgs.stdenv.mkDerivation {
+              pname = "dwm";
+              version = "dk";
 
-            src = ./.;
+              src = ./.;
 
-            buildInputs = with pkgs; [
-              xorg.libX11
-              xorg.libXinerama
-              xorg.libXft
-            ];
+              buildInputs = with pkgs; [
+                xorg.libX11
+                xorg.libXinerama
+                xorg.libXft
+              ];
 
-            prePatch = ''
-              sed -i "s@/usr/local@$out@" config.mk
-            '';
+              prePatch = ''
+                sed -i "s@/usr/local@$out@" config.mk
+              '';
 
-            makeFlags = [ "CC=${pkgs.stdenv.cc.targetPrefix}cc" ];
-          };
+              makeFlags = [
+                "CC=${pkgs.stdenv.cc.targetPrefix}cc"
+                "HOSTFLAGS=-DHOST_${host}"
+              ];
+            };
         in
         {
-          packages.default = pkg;
+          packages.default = pkg "default";
+          packages.flat = pkg "flat";
         };
     in
     flake-utils.lib.eachDefaultSystem make;
