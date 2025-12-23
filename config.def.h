@@ -10,8 +10,9 @@ static const int topbar             = 1;        /* 0 means bottom bar */
 	static const char dmenufont[]       = "IosevkaTerm Nerd Font:style=Medium:size=15";
 #endif
 #ifdef HOST_flat
-	static const char *fonts[]          = { "IosevkaTerm Nerd Font:style=Medium:size=25" };
-	static const char dmenufont[]       = "IosevkaTerm Nerd Font:style=Medium:size=25";
+	// TODO probably not needed anymore? since dpi is respected?
+	static const char *fonts[]          = { "IosevkaTerm Nerd Font:style=Medium:size=15" };
+	static const char dmenufont[]       = "IosevkaTerm Nerd Font:style=Medium:size=15";
 #endif
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
