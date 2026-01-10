@@ -37,6 +37,7 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor float-x,y,w,h floatborderpx CenterThisWindow?*/
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1,     -1,-1,-1,-1,  -1,           0},
+	{ NULL,       NULL,       "trains",   0,            1,           -1,     -1,-1,-1,-1,  -1,           1},
 	//{ "firefox",  NULL,       NULL,       1 << 1,       0,           -1,     -1,-1,-1,-1,  -1,           0},
 	// {
 	// 	NULL, NULL, "panda-trains", // class, instance, title
