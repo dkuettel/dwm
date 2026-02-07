@@ -75,6 +75,12 @@ static const Rule rules[] = {
 		0, // CenterThisWindow?
 	},
 	{
+		"pmux-test-config", NULL, NULL, // class, instance, title
+		0, 1, -1, // tags mask, isfloating, monitor
+		50, 80, 3740, 2040, -1, // float-x,y,w,h; floatborderpx
+		0, // CenterThisWindow?
+	},
+	{
 		"steam", "steamwebhelper", "Steam", // class, instance, title
 		0, 1, -1, // tags mask, isfloating, monitor
 		662, 45, 2288, 2107, -1, // float-x,y,w,h; floatborderpx
