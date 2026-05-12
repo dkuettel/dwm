@@ -92,6 +92,12 @@ static const Rule rules[] = {
 		252, 208, 1700, 1444, -1, // float-x,y,w,h; floatborderpx
 		-1, // CenterThisWindow?
 	},
+	{
+		".gamescope-wrapped", ".gamescope-wrapped", NULL, // class, instance, title
+		0, 1, -1, // tags mask, isfloating, monitor
+		-1, -1, -1, -1, -1, // float-x,y,w,h; floatborderpx
+		0, // CenterThisWindow?
+	},
 	// doesnt quite work as nicely as I hoped
 	// {
 	// 	"Google-chrome", NULL, NULL, // class, instance, title
