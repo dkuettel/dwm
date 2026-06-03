@@ -2,7 +2,7 @@
   description = "dwm";
 
   inputs = {
-    nixpkgs.url = "github:dkuettel/nixpkgs/stable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
     flake-utils.url = "github:numtide/flake-utils";
   };
 
@@ -26,9 +26,9 @@
               src = ./.;
 
               buildInputs = with pkgs; [
-                xorg.libX11
-                xorg.libXinerama
-                xorg.libXft
+                libX11
+                libXinerama
+                libXft
               ];
 
               prePatch = ''
