@@ -29,6 +29,7 @@
                 libX11
                 libXinerama
                 libXft
+                libXcursor
               ];
 
               prePatch = ''
