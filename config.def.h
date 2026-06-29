@@ -65,7 +65,7 @@ static const Rule rules[] = {
 	{
 		NULL, NULL, "trains", // class, instance, title
 		0, 1, -1, // tags mask, isfloating, monitor
-		50, 80, 3740, 2040, -1, // float-x,y,w,h; floatborderpx
+		50, 80, 5020, 2760, -1, // float-x,y,w,h; floatborderpx
 		0, // CenterThisWindow?
 	},
 	{
