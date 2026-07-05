@@ -236,7 +236,7 @@ static const Key keys[] = {
 	// { MODKEY, XK_e, killclient, {0} },
 	{ MODKEY, XK_F1, spawn, {.v = toggleRedshiftCmd} },
 	{ MODKEY|ControlMask, XK_q, self_restart, {0} },
-	// { MODKEY, XK_n, togglemousefocusonly, {0} },
+	{ MODKEY, XK_m, togglemousefocusonly, {0} },
 };
 
 /* button definitions */
