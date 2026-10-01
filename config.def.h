@@ -127,11 +127,48 @@ static const int refreshrate = 120;  /* refresh rate (per second) for client mov
 
 static const float fgw = .9,fgh = .96;  // for foreground toggling, relative to monitor size
 
+static const float mfactasym = 0.55; // only for tileasym
+void
+tileasym(Monitor *m)
+{
+	unsigned int i, n, h, mw, my, ty;
+	Client *c;
+
+	for (n = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next), n++);
+	if (n == 0)
+		return;
+
+	if (n > m->nmaster)
+		mw = m->nmaster ? m->ww * mfactasym : 0;
+	else
+		mw = m->ww;
+	for (i = my = ty = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next), i++)
+		if (i < m->nmaster) {
+			h = (m->wh - my) / (MIN(n, m->nmaster) - i);
+			resize(c, m->wx, m->wy + my, mw - (2*c->bw), h - (2*c->bw), 0);
+			if (my + HEIGHT(c) < m->wh)
+				my += HEIGHT(c);
+		} else {
+			h = (m->wh - ty) / (n - i);
+			resize(c, m->wx + mw, m->wy + ty, m->ww - mw - (2*c->bw), h - (2*c->bw), 0);
+			if (ty + HEIGHT(c) < m->wh)
+				ty += HEIGHT(c);
+		}
+
+	if (n == 1 && selmon->sel->CenterThisWindow)
+		resizeclient(
+			selmon->sel,
+			m->wx + m->ww * (1.0-0.5) / 2, m->wy,
+			m->ww * 0.5, m->wh
+		);
+}
+
 static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{ "[]=",      tile },    /* first entry is default */
+	{ "[]+",      tileasym },    /* tile but with a bigger main */
 	// { "><>",      NULL },    /* no layout function means floating behavior */
-	{ "[M]",      monocle },
+	{ "[M]",      monocle },   /* monocle actually overwrites the text [M] with the window count */
 };
 
 /* key definitions */
