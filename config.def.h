@@ -169,7 +169,26 @@ static const Layout layouts[] = {
 	{ "[]+",      tileasym },    /* tile but with a bigger main */
 	// { "><>",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },   /* monocle actually overwrites the text [M] with the window count */
+	{ NULL, NULL },  // needed for cycle layouts
 };
+
+void
+cyclelayout(const Arg *arg)
+{
+	Layout *l;
+	for(l = (Layout *)layouts; l != selmon->lt[selmon->sellt]; l++);
+	if(arg->i > 0) {
+		if(l->symbol && (l + 1)->symbol)
+			setlayout(&((Arg) { .v = (l + 1) }));
+		else
+			setlayout(&((Arg) { .v = layouts }));
+	} else {
+		if(l != layouts && (l - 1)->symbol)
+			setlayout(&((Arg) { .v = (l - 1) }));
+		else
+			setlayout(&((Arg) { .v = &layouts[LENGTH(layouts) - 2] }));
+	}
+}
 
 /* key definitions */
 #define MODKEY Mod4Mask
@@ -235,7 +254,7 @@ static const Key keys[] = {
 	// { MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	// { MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	// { MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
-	{ MODKEY,                       XK_v,  setlayout,      {0} },
+	{ MODKEY,                       XK_v,  cyclelayout,      {.i = +1} },
 	{ MODKEY|ShiftMask,             XK_d,  togglefloating, {0} },
 	{ MODKEY,                       XK_w,  toggleforegrounded, {0} },
 	// { MODKEY,                       XK_0,      view,           {.ui = ~0 } },
