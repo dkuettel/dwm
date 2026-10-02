@@ -1,4 +1,5 @@
 {
+  # see https://dwm.suckless.org/
   description = "dwm";
 
   inputs = {
