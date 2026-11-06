@@ -29,69 +29,37 @@ static const char *colors[][3]      = {
 /* tagging */
 static const char *tags[] = { "n", "e", "i", "o", "." };
 
+/* `xprop` gives:
+ *   WM_CLASS(STRING) = instance, class
+ *   WM_NAME(STRING) = title
+ * and xdotool selectwindow getwindowgeometry to get sizes of a window
+ * NOTE: CenterThisWindow is only for when it is the only window (tiled) that it will ben centered, no effect for when floating
+ */
 static const Rule rules[] = {
-	/* xprop:
-	 *	WM_CLASS(STRING) = instance, class
-	 *	WM_NAME(STRING) = title
-	 * and xdotool selectwindow getwindowgeometry to get sizes
-	 */
-	/* class      instance    title       tags mask     isfloating   monitor float-x,y,w,h floatborderpx CenterThisWindow?*/
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1,     -1,-1,-1,-1,  -1,           0},
-	//{ "firefox",  NULL,       NULL,       1 << 1,       0,           -1,     -1,-1,-1,-1,  -1,           0},
-	// {
-	// 	NULL, NULL, "panda-trains", // class, instance, title
-	// 	0, 1, -1, // tags mask, isfloating, monitor
-	// 	-1, -1, -1, -1, -1, // float-x,y,w,h; floatborderpx
-	// 	0, // CenterThisWindow?
-	// },
-	{
-		"vlc", NULL, NULL, // class, instance, title
-		0, 1, -1, // tags mask, isfloating, monitor
-		-1, -1, -1, -1, -1, // float-x,y,w,h; floatborderpx
-		0, // CenterThisWindow?
-	},
-	// {
-	// 	"pstart", NULL, NULL, // class, instance, title
-	// 	~0, 1, -1, // tags mask, isfloating, monitor
-	// 	-1, -1, -1, -1, -1, // float-x,y,w,h; floatborderpx
-	// 	0, // CenterThisWindow?
-	// },
-	{
-		"neovide-flip-flop", NULL, NULL, // class, instance, title
-		0, 1, -1, // tags mask, isfloating, monitor
-		50, 80, 3740, 2040, -1, // float-x,y,w,h; floatborderpx
-		0, // CenterThisWindow?
-	},
-	{
-		NULL, NULL, "trains", // class, instance, title
-		0, 1, -1, // tags mask, isfloating, monitor
-		50, 80, 5020, 2760-276, -1, // float-x,y,w,h; floatborderpx
-		0, // CenterThisWindow?
-	},
-	{
-		"Open3D", "Open3D", NULL, // class, instance, title
-		0, 1, -1, // tags mask, isfloating, monitor
-		-1, -1, -1, -1, -1, // float-x,y,w,h; floatborderpx
-		1, // CenterThisWindow?
-	},
-	{
-		"gthumb", "gthumb", NULL, // class, instance, title
-		0, 1, -1, // tags mask, isfloating, monitor
-		-1, -1, -1, -1, -1, // float-x,y,w,h; floatborderpx
-		1, // CenterThisWindow?
-	},
-	{
-		"tmux-test-config", NULL, NULL, // class, instance, title
-		0, 1, -1, // tags mask, isfloating, monitor
-		50, 80, 3740, 2040, -1, // float-x,y,w,h; floatborderpx
-		0, // CenterThisWindow?
-	},
-	{
-		"pmux-test-config", NULL, NULL, // class, instance, title
-		0, 1, -1, // tags mask, isfloating, monitor
-		50, 80, 3740, 2040, -1, // float-x,y,w,h; floatborderpx
-		0, // CenterThisWindow?
-	},
+	{ .class="Gimp", .instance=NULL, .title=NULL,
+	  .tags=0, .monitor=-1, .CenterThisWindow=0,
+	  .isfloating=1, .floatx= -1, .floaty=-1, .floatw=-1, .floath=-1, .floatborderpx= -1},
+	{ .class="vlc", .instance=NULL, .title=NULL,
+	   .tags=0, .monitor=-1, .CenterThisWindow=0,
+	  .isfloating=1, .floatx= -1, .floaty=-1, .floatw=-1, .floath=-1, .floatborderpx= -1},
+	{ .class="neovide-flip-flop", .instance=NULL, .title=NULL,
+	  .tags=0, .monitor=-1, .CenterThisWindow=0,
+	  .isfloating=1, .floatx= 50, .floaty=80, .floatw=3740, .floath=2040, .floatborderpx= -1},
+	{ .class=NULL, .instance=NULL, .title="trains",
+	  .tags=0, .monitor=-1, .CenterThisWindow=0,
+	  .isfloating=1, .floatx= 50, .floaty=80, .floatw=3740, .floath=2760-276, .floatborderpx= -1},
+	{ .class="Open3D", .instance="Open3D", .title=NULL,
+	  .tags=0, .monitor=-1, .CenterThisWindow=0,
+	  .isfloating=1, .floatx= 50, .floaty=80, .floatw=3740, .floath=2760-276, .floatborderpx= -1},
+	{ .class="gthumb", .instance="gthumb", .title=NULL,
+	  .tags=0, .monitor=-1, .CenterThisWindow=0,
+	  .isfloating=1, .floatx= 50, .floaty=80, .floatw=3740, .floath=2760-276, .floatborderpx= -1},
+	{ .class="tmux-test-config", .instance="gthumb", .title=NULL,
+	  .tags=0, .monitor=-1, .CenterThisWindow=0,
+	  .isfloating=1, .floatx= 50, .floaty=80, .floatw=3740, .floath=2040, .floatborderpx= -1},
+	{ .class="pmux-test-config", .instance="gthumb", .title=NULL,
+	  .tags=0, .monitor=-1, .CenterThisWindow=0,
+	  .isfloating=1, .floatx= 50, .floaty=80, .floatw=3740, .floath=2040, .floatborderpx= -1},
 	// {
 	// 	// sins 2
 	// 	"steam_app_1575940", "steam_app_1575940", NULL, // class, instance, title
