@@ -22,6 +22,7 @@
  */
 #include <errno.h>
 #include <locale.h>
+#include <math.h>
 #include <signal.h>
 #include <stdarg.h>
 #include <stdio.h>
@@ -145,6 +146,7 @@ typedef struct {
 	int isfloating;
 	int monitor;
 	int floatx, floaty, floatw, floath;
+	float floatratio;
 	int floatborderpx;
 	int CenterThisWindow;
 } Rule;
@@ -322,14 +324,21 @@ applyrules(Client *c)
 			c->CenterThisWindow = r->CenterThisWindow;
 			c->tags |= r->tags;
 			if (r->floatborderpx >= 0) {
-			    c->floatborderpx = r->floatborderpx;
-			    c->hasfloatborderwidth = 1;
+				c->floatborderpx = r->floatborderpx;
+				c->hasfloatborderwidth = 1;
 			}
 			if (r->isfloating) {
-			    if (r->floatx >= 0) c->x = c->mon->mx + r->floatx;
-			    if (r->floaty >= 0) c->y = c->mon->my + r->floaty;
-			    if (r->floatw >= 0) c->w = r->floatw;
-			    if (r->floath >= 0) c->h = r->floath;
+				if (r->floatratio > 0.0) {
+					c->w = roundf(c->mon->ww * r->floatratio);
+					c->h = roundf(c->mon->wh * r->floatratio);
+					c->x = c->mon->wx + (c->mon->ww - c->w) / 2;
+					c->y = c->mon->wy + (c->mon->wh - c->h) / 2;
+				} else {
+					if (r->floatx >= 0) c->x = c->mon->mx + r->floatx;
+					if (r->floaty >= 0) c->y = c->mon->my + r->floaty;
+					if (r->floatw >= 0) c->w = r->floatw;
+					if (r->floath >= 0) c->h = r->floath;
+				}
 			}
 			for (m = mons; m && m->num != r->monitor; m = m->next);
 			if (m)
