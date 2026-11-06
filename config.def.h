@@ -69,6 +69,12 @@ static const Rule rules[] = {
 		0, // CenterThisWindow?
 	},
 	{
+		"Open3D", "Open3D", NULL, // class, instance, title
+		0, 1, -1, // tags mask, isfloating, monitor
+		-1, -1, -1, -1, -1, // float-x,y,w,h; floatborderpx
+		1, // CenterThisWindow?
+	},
+	{
 		"tmux-test-config", NULL, NULL, // class, instance, title
 		0, 1, -1, // tags mask, isfloating, monitor
 		50, 80, 3740, 2040, -1, // float-x,y,w,h; floatborderpx
