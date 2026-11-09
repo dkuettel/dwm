@@ -145,8 +145,7 @@ typedef struct {
 	unsigned int tags;
 	int isfloating;
 	int monitor;
-	int floatx, floaty, floatw, floath;
-	float floatratio;
+	float floatx, floaty, floatw, floath;
 	int floatborderpx;
 	int CenterThisWindow;
 } Rule;
@@ -328,17 +327,10 @@ applyrules(Client *c)
 				c->hasfloatborderwidth = 1;
 			}
 			if (r->isfloating) {
-				if (r->floatratio > 0.0) {
-					c->w = roundf(c->mon->ww * r->floatratio);
-					c->h = roundf(c->mon->wh * r->floatratio);
-					c->x = c->mon->wx + (c->mon->ww - c->w) / 2;
-					c->y = c->mon->wy + (c->mon->wh - c->h) / 2;
-				} else {
-					if (r->floatx >= 0) c->x = c->mon->mx + r->floatx;
-					if (r->floaty >= 0) c->y = c->mon->my + r->floaty;
-					if (r->floatw >= 0) c->w = r->floatw;
-					if (r->floath >= 0) c->h = r->floath;
-				}
+				if (r->floatx >= 0.0) c->x = c->mon->wx + roundf(c->mon->ww * r->floatx);
+				if (r->floaty >= 0.0) c->y = c->mon->wy + roundf(c->mon->wh * r->floaty);
+				if (r->floatw >= 0.0) c->w = roundf(c->mon->ww * r->floatw);
+				if (r->floath >= 0.0) c->h = roundf(c->mon->wh * r->floath);
 			}
 			for (m = mons; m && m->num != r->monitor; m = m->next);
 			if (m)
