@@ -60,44 +60,6 @@ static const Rule rules[] = {
 	{ .class="pmux-test-config", .instance="gthumb", .title=NULL,
 	  .tags=0, .monitor=-1, .CenterThisWindow=0, .floatratio=0.8,
 	  .isfloating=1, .floatx= 50, .floaty=80, .floatw=3740, .floath=2040, .floatborderpx= -1},
-	// {
-	// 	// sins 2
-	// 	"steam_app_1575940", "steam_app_1575940", NULL, // class, instance, title
-	// 	0, 1, -1, // tags mask, isfloating, monitor
-	// 	-1, -1, -1, -1, 0, // float-x,y,w,h; floatborderpx
-	// 	0, // CenterThisWindow?
-	// },
-	// {
-	// 	"steam", "steamwebhelper", "Steam", // class, instance, title
-	// 	0, 1, -1, // tags mask, isfloating, monitor
-	// 	662, 45, 2288, 2107, -1, // float-x,y,w,h; floatborderpx
-	// 	-1, // CenterThisWindow?
-	// },
-	// {
-	// 	"steam", "steamwebhelper", "Steam Settings", // class, instance, title
-	// 	0, 1, -1, // tags mask, isfloating, monitor
-	// 	662, 45, 2288, 2107, -1, // float-x,y,w,h; floatborderpx
-	// 	-1, // CenterThisWindow?
-	// },
-	// {
-	// 	"steam", "steamwebhelper", NULL, // class, instance, title
-	// 	0, 1, -1, // tags mask, isfloating, monitor
-	// 	252, 208, 1700, 1444, -1, // float-x,y,w,h; floatborderpx
-	// 	-1, // CenterThisWindow?
-	// },
-	// {
-	// 	".gamescope-wrapped", ".gamescope-wrapped", NULL, // class, instance, title
-	// 	0, 1, -1, // tags mask, isfloating, monitor
-	// 	-1, -1, -1, -1, -1, // float-x,y,w,h; floatborderpx
-	// 	0, // CenterThisWindow?
-	// },
-	// doesnt quite work as nicely as I hoped
-	// {
-	// 	"Google-chrome", NULL, NULL, // class, instance, title
-	// 	0, 0, -1, // tags mask, isfloating, monitor
-	// 	-1, -1, -1, -1, -1, // float-x,y,w,h; floatborderpx
-	// 	1, // CenterThisWindow?
-	// }
 };
 
 
