@@ -60,6 +60,9 @@ static const Rule rules[] = {
 	{ .class="pmux-test-config", .instance="gthumb", .title=NULL,
 	  .tags=0, .monitor=-1, .CenterThisWindow=0,
 	  .isfloating=1, .floatx=0.1, .floaty=0.1, .floatw=0.8, .floath=0.8, .floatborderpx= -1},
+	{ .class="firefox", .instance="Toolkit", .title="Picture-in-Picture",
+	  .tags=0b11111, .monitor=-1, .CenterThisWindow=0,
+	  .isfloating=1, .floatx=0.7, .floaty=0.1, .floatw=0.2, .floath=0.2, .floatborderpx= -1},
 };
 
 
