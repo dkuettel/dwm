@@ -250,6 +250,8 @@ static const Key keys[] = {
 	// { MODKEY, XK_e, killclient, {0} },
 	{ MODKEY, XK_F1, spawn, {.v = toggleRedshiftCmd} },
 	{ MODKEY|ControlMask, XK_q, self_restart, {0} },
+	// TODO this still works, but it doesnt stay fg, and then can we have a rule to also activate this?
+	// hm i know for sure there was an always-foreground once, for this here it would make sense
 	{ MODKEY, XK_m, togglemousefocusonly, {0} },
 };
 
